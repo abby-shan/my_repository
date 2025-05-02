@@ -1,0 +1,168 @@
+<Table></Table>his is our team collaboration idea that as group member you enter your datails below and pick some of your hobies and if there is any kind of bio of yourself you can add an article below so enjoy our work
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>National Institute of Transport</title>
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        #message {
+            color: red;
+            font-weight: bold;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo-container img {
+            width: 100px;
+            cursor: pointer;
+        }
+        .logo-text {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #666;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .hobbies-group {
+            margin-top: 5px;
+        }
+        .hobbies-group label {
+            display: inline-block;
+            font-weight: normal;
+            margin-right: 15px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color:#007BFF;
+            color: white;
+            border: none;
+            border-radius:4px;
+            cursor: pointer;
+            font-size:16px;
+        }
+      
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>National Institute of Transport</h1>
+        <div class="logo-container">
+            <a href="www.nit.ac.tz">
+                <img src="Nit Logo.png" alt="NIT Logo" />
+            </a>
+        </div>
+        <p class="logo-text">Click the image above to visit the NIT website.</p>
+        <h2 style="text-align: center">Sign up Form</h2>
+        <form id="signupform">
+            <div class="form-group">
+                <label for="fullname">Full Name:</label>
+                <input type="text" id="fullname" placeholder="Full name" required />
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" placeholder="email" required />
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="password" required />
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" placeholder="dd / mm / yyyy" required />
+            </div>
+            <div class="form-group">
+                <label>Gender:</label>
+                <div>
+                    <input type="radio" id="male" name="gender" value="male" />
+                    <label for="male" style="display: inline">Male</label>
+                    <br>
+                    <input type="radio" id="female" name="gender" value="female"/>
+                    <label for="female" style="display: inline">Female</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Hobbies:</label>
+                <div class="hobbies-group">
+                    <input type="checkbox" id="reading" name="hobbies" value="reading" />
+                    <label for="reading">Reading</label>
+                    <input type="checkbox" id="traveling" name="hobbies" value="traveling" />
+                    <label for="traveling">Traveling</label>
+                    <input type="checkbox" id="sports" name="hobbies" value="sports" />
+                    <label for="sports">Sports</label>
+                    <input type="checkbox" id="music" name="hobbies" value="music" />
+                    <label for="music">Music</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="bio">Short Bio:</label>
+                <textarea id="bio" name="bio" rows="4"></textarea>
+            </div>
+            <button type="submit" class="submit-btn" background-color="#0056b3"><a href="table.html">Submit</a></button>
+        </form>
+        <p id="message"></p>
+        
+    </div>
+    <script>
+        const form = document.getElementById("signupform");
+        const message = document.getElementById("message");
+        let userCount = JSON.parse(localStorage.getItem("userCount")) || 0;
+        const maxUsers = 8;
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+            if (userCount >= maxUsers) {
+                message.textContent = "sorry find other group!";
+                return;
+            }
+            const fullname = document.getElementById("fullname").value;
+            const email = document.getElementById("email").value;
+            const dob = document.getElementById("dob").value;
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            users.push({ fullname, email, dob });
+            localStorage.setItem("users", JSON.stringify(users));
+            userCount++;
+            localStorage.setItem("userCount", JSON.stringify(userCount));
+            window.location.href = "table.html";
+        });
+    </script>
+</body>
+</html>
+
